@@ -24,3 +24,9 @@ def display_board(b):
 
 
 display_board(board)
+
+def find_empty_block(b):
+    for i in range(len(b)):
+        for j in range(len(b[0])):
+            if b[i][j] == 0:
+                return (i,j)
