@@ -31,9 +31,11 @@ def find_empty_block(b):
             if b[i][j] == 0:
                 return (i,j)
 
+    return None
 
 
-def value(b, num, pos):
+
+def valid(b, num, pos):
     # check row
     for i in range(len(b[0])):
         if b[pos[0]][i] == num and pos[0] != i:
@@ -55,3 +57,22 @@ def value(b, num, pos):
 
 
     return True
+
+
+def solve(b):
+    find = find_empty_block(b)
+    if not find:
+        return False
+    else:
+        row, col = find
+
+        for i in range(1,10):
+            if valid(b, i, (row, col)):
+                b[row][col] = i
+
+                if solve(b):
+                    return True
+
+                b[row][col] = 0
+
+        return False
